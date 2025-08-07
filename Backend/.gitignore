@@ -1,21 +1,14 @@
-
 # --------------------
-# 🔥 Dependency folders
+# 🔥 Node dependencies
 # --------------------
 node_modules/
-
-# --------------------
-# 🏗️ Build output
-# --------------------
-dist/
-build/
-*.local
 
 # --------------------
 # 🔐 Environment variables
 # --------------------
 .env
 .env.*.local
+*.local
 
 # --------------------
 # 🪵 Logs
@@ -29,6 +22,13 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # --------------------
+# 🏗️ Build output (if using TypeScript or bundlers)
+# --------------------
+dist/
+build/
+*.tsbuildinfo
+
+# --------------------
 # 🧠 Editor/IDE settings
 # --------------------
 .vscode/
@@ -37,10 +37,15 @@ lerna-debug.log*
 .DS_Store
 
 # --------------------
-# 💩 Misc
+# 💩 Misc junk
 # --------------------
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# --------------------
+# 🧪 MongoDB dump (optional if you use mongodump)
+# --------------------
+dump/
