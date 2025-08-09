@@ -1,0 +1,46 @@
+
+# --------------------
+# 🔥 Dependency folders
+# --------------------
+node_modules/
+
+# --------------------
+# 🏗️ Build output
+# --------------------
+dist/
+build/
+*.local
+
+# --------------------
+# 🔐 Environment variables
+# --------------------
+.env
+.env.*.local
+
+# --------------------
+# 🪵 Logs
+# --------------------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# --------------------
+# 🧠 Editor/IDE settings
+# --------------------
+.vscode/
+!.vscode/extensions.json
+.idea/
+.DS_Store
+
+# --------------------
+# 💩 Misc
+# --------------------
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
