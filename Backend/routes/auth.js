@@ -27,7 +27,7 @@ router.post('/createUser',[
         email:req.body.email,
         password:req.body.password
     }).then(user=> res.json(user)).catch((err)=>res.json({
-        error:'Error Encountered',
+        error:'Error Encountered',   //aaaa
         message:err.message
     }));
 
