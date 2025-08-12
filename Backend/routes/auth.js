@@ -92,4 +92,8 @@ router.post(
   }
 );
 
+// Creating the route to get info of the loggedin user
+router.post('/getUser',fetchUser,async (req,res)=>{
+
+})
 module.exports = router;
