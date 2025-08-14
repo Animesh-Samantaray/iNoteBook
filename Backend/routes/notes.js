@@ -3,7 +3,7 @@ const router = express.Router();
 const pat = require("path");
 const fetchUser = require("../middlewares/fetchUser.js");
 const Notes = require("../models/Note.js");
-const User = require("../models/User");
+const User = require("../models/User.js");
 const { body, validationResult } = require("express-validator");
 
 router.get("/", (req, res) => {
