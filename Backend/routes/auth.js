@@ -5,6 +5,9 @@ const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken');
 const SECRET_KEY = 'ani#74fauji@98$[-&-]z_';
+const fetchUser = require('../middlewares/fetchUser.js');
+
+
 // Create user route with password hashing
 router.post(
   "/createUser",
@@ -17,7 +20,7 @@ router.post(
   ],
   async (req, res) => {
     const errors = validationResult(req);
-// Checking for the errors during giving input
+    // Checking for the errors during giving input
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
@@ -39,17 +42,19 @@ router.post(
         password: hashedPassword,
       });
       const example = {
-        user:{
-          id:user.id
+        user: {
+          id: user.id
         }
       }
-      const token = jwt.sign(example , SECRET_KEY);
-      res.json({jwtToken : token , USER:user});
+      const token = jwt.sign(example, SECRET_KEY);
+      res.json({ jwtToken: token, USER: user });
     } catch (err) {
       res.status(500).json({ error: "Server Error", message: err.message });
     }
   }
 );
+
+
 
 // Login route with bcrypt password comparison
 router.post(
@@ -80,20 +85,34 @@ router.post(
       }
 
       const example = {
-        user:{
-          id:user.id
+        user: {
+          id: user.id
         }
       }
-      const token = jwt.sign(example , SECRET_KEY);
-      res.json({ message: `Congratulations ${user.name}, you are logged in!` , token:token });
+      const token = jwt.sign(example, SECRET_KEY);
+      res.json({ message: `Congratulations ${user.name}, you are logged in!`, token: token });
     } catch (err) {
       res.status(500).json({ error: "Server Error", message: err.message });
     }
   }
 );
 
-// Creating the route to get info of the loggedin user
-router.post('/getUser',fetchUser,async (req,res)=>{
 
-})
-module.exports = router;
+
+// Creating the route to get info of the loggedin user
+router.post('/getUser', fetchUser, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const user = await User.findById(userId).select('-password');
+
+    if (!user) {
+      return res.status(400).json({ error: 'User not found' }); 
+    }
+    res.status(200).json(user); 
+  } catch (err) {
+    res.status(500).json({ error: "Server Error", message: err.message });
+  }
+});
+
+
+module.exports = router ;
