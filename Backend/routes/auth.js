@@ -54,8 +54,6 @@ router.post(
   }
 );
 
-
-
 // Login route with bcrypt password comparison
 router.post(
   "/login",
