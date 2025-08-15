@@ -1,22 +1,30 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import Navbar from './components/Navbar.jsx';
+import Home from './components/Home.jsx';
+import About from './components/About.jsx';
+import NoteState from './contexts/notes/NoteState.jsx';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
+    <NoteState>
+      <Router>
+      
+        <Navbar />
+
         
-      </div>
-      <h1>Counter</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}  className=' mt-[20px] p-2 bg-amber-700 hover:bg-purple-900 text-white'>
-          count is {count}
-        </button>
-      </div>
-    </>
-  )
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+          <div className="bg-white shadow-md rounded-lg p-6">
+            <Routes>
+              <Route path="/home" element={<Home />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
+          </div>
+        </main>
+      </Router>
+    </NoteState>
+  );
 }
 
-export default App
+export default App;
